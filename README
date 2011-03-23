@@ -1,0 +1,35 @@
+######################################################
+##  RTMPDUMP を利用したRADIKOプレイヤー・録音スクリプト
+######################################################
+
+Require
+
+rtmpdump パッケージ一式
+swftools : Ubuntu(9.10/10.10)の場合自力コンパイルの必要あり。0.9.1以上を入れよう
+
+swftools の導入
+先に下記をatp-getで入れておく。特にg++は忘れがちなので注意
+
+  sudo apt-get install libfreetype6-dev libgif-dev libjpeg62-dev libt1-5 zlib1g-dev libavifile-0.7-dev libart-2.0-dev
+  sudo apt-get install g++
+
+swftoolsの取得
+wget http://www.swftools.org/swftools-0.9.1.tar.gz
+
+展開して
+$ ./configure
+$ make
+$ sudo make install
+
+もし入っていない状態で一度makeをしてしまうと残骸が残ってそのあとコンパイルエラーがずーっと発生してしまうため
+make clean で掃除してから実施すること
+
+その後2chで拾ってきたスクリプトを一部改変したスクリプトを実行する
+
+listen_radiko2.sh : 要mplayer ヒアリングのみ
+rec_radiko2.sh : 録音可能・・・
+
+
+トークン・認証の解析　ベースのスクリプトを作ってくれたRTMPスレ372さんに感謝
+
+
