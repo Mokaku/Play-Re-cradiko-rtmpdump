@@ -13,7 +13,7 @@ elif [ $# -eq 2 ]; then
   channel=$1
   output=$2
 else
-  echo "usage : $0 channel_name[TBS|QRR|LFR|NSB|INT|FMT|FMJ] [outputfile]"
+  echo "usage : $0 channel_name[East:TBS|QRR|LFR|NSB|INT|FMT|FMJ // West:ABC|MBS|OBC|CCL|802|FMO ] [outputfile]"
   exit 1
 fi
 
