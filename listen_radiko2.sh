@@ -95,6 +95,7 @@ wget -q \
      --header="X-Radiko-Partialkey: ${partialkey}" \
      --post-data='\r\n' \
      --no-check-certificate \
+     --user-agent="Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)" \
      https://radiko.jp/v2/api/auth2_fms
 
 if [ $? -ne 0 -o ! -f auth2_fms ]; then
