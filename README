@@ -2,7 +2,9 @@
 ##  RTMPDUMP を利用したRADIKOプレイヤー・録音スクリプト
 ######################################################
 
-Require
+
+
+= Require
 
 rtmpdump パッケージ一式
 mplayer パッケージ一式
@@ -11,6 +13,8 @@ swftools : Ubuntu(9.10/10.10)の場合自力コンパイルの必要あり。0.9
 ちなみにコマンド自体はUbuntu 上での稼働を前提としてで記載してある
 必要要件さえ整えばLinux であれば動作するはず。
 MacやWinであればもっといいツールあると思う。そっちを使うほうがいい。
+
+= Instration
 
 swftools の導入
 先に下記をatp-getで入れておく。特にg++は忘れがちなので注意
@@ -39,7 +43,28 @@ $ sudo apt-get insall mplayer rtmpdump
 listen_radiko2.sh : 要mplayer ヒアリングのみ
 rec_radiko2.sh : 録音可能・・・
 
+= Change Log
 
+2011-05-31
+ - Edit README 
+
+2011-03-27
+ - 中京地区のチャンネルコード追加... 
+ - Add mozilla User Agent to wget again 
+ - Add Mozzila User Agent to script 
+
+2011-03-25
+ - Add 関西FM... 
+
+2011-03-22
+
+ - Change README 
+ - First Commit 
+
+
+
+
+= GRASIOUS!! 
 トークン・認証の解析　ベースのスクリプトを作ってくれたRTMPスレ372さんに感謝
 
 
