@@ -5,7 +5,12 @@
 Require
 
 rtmpdump パッケージ一式
+mplayer パッケージ一式
 swftools : Ubuntu(9.10/10.10)の場合自力コンパイルの必要あり。0.9.1以上を入れよう
+
+ちなみにコマンド自体はUbuntu 上での稼働を前提としてで記載してある
+必要要件さえ整えばLinux であれば動作するはず。
+MacやWinであればもっといいツールあると思う。そっちを使うほうがいい。
 
 swftools の導入
 先に下記をatp-getで入れておく。特にg++は忘れがちなので注意
@@ -24,7 +29,12 @@ $ sudo make install
 もし入っていない状態で一度makeをしてしまうと残骸が残ってそのあとコンパイルエラーがずーっと発生してしまうため
 make clean で掃除してから実施すること
 
+
 その後2chで拾ってきたスクリプトを一部改変したスクリプトを実行する
+
+下記スクリプト使用のためには mplayer と rtmpdump が必要
+
+$ sudo apt-get insall mplayer rtmpdump
 
 listen_radiko2.sh : 要mplayer ヒアリングのみ
 rec_radiko2.sh : 録音可能・・・
