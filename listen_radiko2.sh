@@ -1,7 +1,6 @@
 #!/bin/sh
 
 ## playerurl=http://radiko.jp/player/swf/player_2.0.1.00.swf
-playerurl=http://radiko.jp/player/swf/player_2.0.1.00.swf
 playerurl=http://radiko.jp/player/swf/player_3.0.0.01.swf
 playerfile=./player.swf
 keyfile=./authkey.png
@@ -35,7 +34,6 @@ fi
 # get keydata (need swftools)
 #
 if [ ! -f $keyfile ]; then
-##   swfextract -b 5 $playerfile -o $keyfile
   swfextract -b 14 $playerfile -o $keyfile
 
   if [ ! -f $keyfile ]; then
@@ -116,15 +114,6 @@ rm -f auth2_fms
 #
 # rtmpdump
 #
-## rtmpdump -v \
-##         -r "rtmpe://radiko.smartstream.ne.jp" \
-##          --playpath "simul-stream" \
-##          --app "${channel}/_defInst_" \
-##          -W $playerurl \
-##          -C S:"" -C S:"" -C S:"" -C S:$authtoken \
-##          --live \
-##          --flv - | ${MPLAYER} -
-
 rtmpdump -v \
 	 -r "rtmpe://w-radiko.smartstream.ne.jp" \
 	 --playpath "simul-stream.stream" \
