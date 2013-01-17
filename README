@@ -50,6 +50,9 @@ rec_radiko2.sh : 録音可能・・・
 
 = Change Log
 
+2013-01-17
+ - 2012 10 月ごろにredikoの仕様変更があったらしくそれに対応するようlisten_radiko2.shのみ修正変更 
+
 2012-06-19
  - Edit README 
 
@@ -74,5 +77,6 @@ rec_radiko2.sh : 録音可能・・・
 
 = GRASIOUS!! 
 トークン・認証の解析　ベースのスクリプトを作ってくれたRTMPスレ372さんに感謝
+
 
 
