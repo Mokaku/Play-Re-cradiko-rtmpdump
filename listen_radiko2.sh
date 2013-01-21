@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ## playerurl=http://radiko.jp/player/swf/player_2.0.1.00.swf
 playerurl=http://radiko.jp/player/swf/player_3.0.0.01.swf
@@ -7,6 +7,65 @@ keyfile=./authkey.png
 
 MPLAYER=/usr/bin/mplayer
 
+############################
+## area_id	area_name
+## JP1	HOKKAIDO JAPAN
+## JP2	AOMORI JAPAN
+## JP3	IWATE JAPAN
+## JP4	MIYAGI JAPAN
+## JP5	AKITA JAPAN
+## JP6	YAMAGATA JAPAN
+## JP7	FUKUSHIMA JAPAN
+## JP8	IBARAKI JAPAN
+## JP9	TOCHIGI JAPAN
+## JP10	GUNMA JAPAN
+## JP11	SAITAMA JAPAN
+## JP12	CHIBA JAPAN
+## JP13	TOKYO JAPAN
+## JP14	KANAGAWA JAPAN
+## JP15	NIIGATA JAPAN
+## JP16	TOYAMA JAPAN
+## JP17	ISHIKAWA JAPAN
+## JP18	FUKUI JAPAN
+## JP19	YAMANASHI JAPAN
+## JP20	NAGANO JAPAN
+## JP21	GIFU JAPAN
+## JP22	SHIZUOKA JAPAN
+## JP23	AICHI JAPAN
+## JP24	MIE JAPAN
+## JP25	SHIGA JAPAN
+## JP26	KYOTO JAPAN
+## JP27	OSAKA JAPAN
+## JP28	HYOGO JAPAN
+## JP29	NARA JAPAN
+## JP30	WAKAYAMA JAPAN
+## JP31	TOTTORI JAPAN
+## JP32	SHIMANE JAPAN
+## JP33	OKAYAMA JAPAN
+## JP34	HIROSHIMA JAPAN
+## JP35	YAMAGUCHI JAPAN
+## JP36	TOKUSHIMA JAPAN
+## JP37	KAGAWA JAPAN
+## JP38	EHIME JAPAN
+## JP39	KOUCHI JAPAN
+## JP40	FUKUOKA JAPAN
+## JP41	SAGA JAPAN
+## JP42	NAGASAKI JAPAN
+## JP43	KUMAMOTO JAPAN
+## JP44	OHITA JAPAN
+## JP45	MIYAZAKI JAPAN
+## JP46	KAGOSHIMA JAPAN
+## JP47	OKINAWA JAPAN
+############################
+
+### 上記を参照して視聴しているエリアのアリアコードを設定してください
+ARIA="JP13"  ## デフォルト 東京
+
+## GET ARIA CHANNEL LIST
+CH_LIST=(`curl -g http://radiko.jp/v2/station/list/${ARIA}.xml | xmlstarlet sel -t -m "stations/station/id" -v "." -n`)
+
+## echo ${CH_LIST[@]} for Debug
+
 if [ $# -eq 1 ]; then
   channel=$1
   output=./$1.flv
@@ -14,7 +73,7 @@ elif [ $# -eq 2 ]; then
   channel=$1
   output=$2
 else
-  echo "usage : $0 channel_name[East:TBS|QRR|LFR|NSB|INT|FMT|FMJ // West:ABC|MBS|OBC|CCL|802|FMO // Chukyo:CBC|TOKAIRADIO|GBS|ZIP-FM|FMMIE] [outputfile]"
+  echo "usage : $0 channel_name[${CH_LIST[@]}] [outputfile]"
   exit 1
 fi
 

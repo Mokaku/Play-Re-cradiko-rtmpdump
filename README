@@ -12,6 +12,8 @@
 rtmpdump パッケージ一式
 mplayer パッケージ一式
 swftools : Ubuntu(9.10/10.10)の場合自力コンパイルの必要あり。0.9.1以上を入れよう
+xmlstarlet : エリアコードから取得可能なチャンネル一覧を取得するために必要。
+	なくてもエラーは出るがチャンネルコードがわかっていれば動作は可能
 
 ちなみにコマンド自体はUbuntu 上での稼働を前提としてで記載してある
 必要要件さえ整えばLinux であれば動作するはず。
@@ -45,10 +47,17 @@ $ sudo apt-get insall mplayer rtmpdump
 
  ※ 場合によっては、別々に入れないとrtmpdumpがないって怒られる場合がある。
 
+xmlstarlet の導入 (2013/01/21 より導入)
+$ sudo apt-get install xmlstarlet
+
 listen_radiko2.sh : 要mplayer ヒアリングのみ
 rec_radiko2.sh : 録音可能・・・
 
 = Change Log
+
+2013-01-21
+ - Radikoが対応するCHANNEL LISTが増えてきたのでAPIから取得できるXMLから視聴可能なチャンネルリストを取得するように変更。
+ - 関東・中部・関西で固定でCHANNEL LIST が表示するようになっていた物を修正（不要になってきたため）
 
 2013-01-17
  - 2012 10 月ごろにredikoの仕様変更があったらしくそれに対応するようlisten_radiko2.shのみ修正変更 
