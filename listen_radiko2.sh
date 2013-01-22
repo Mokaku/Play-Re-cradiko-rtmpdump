@@ -1,12 +1,5 @@
 #!/bin/bash
 
-## playerurl=http://radiko.jp/player/swf/player_2.0.1.00.swf
-playerurl=http://radiko.jp/player/swf/player_3.0.0.01.swf
-playerfile=./player.swf
-keyfile=./authkey.png
-
-MPLAYER=/usr/bin/mplayer
-
 ############################
 ## area_id	area_name
 ## JP1	HOKKAIDO JAPAN
@@ -62,9 +55,40 @@ MPLAYER=/usr/bin/mplayer
 ARIA="JP13"  ## デフォルト 東京
 
 ## GET ARIA CHANNEL LIST
-CH_LIST=(`curl -g http://radiko.jp/v2/station/list/${ARIA}.xml | xmlstarlet sel -t -m "stations/station/id" -v "." -n`)
+## CH_LIST=(`curl -s http://radiko.jp/v2/station/list/${ARIA}.xml | xmlstarlet sel -t -m /radiko/stations/station -v "concat(@id,':',name)" -n `)
 
-## echo ${CH_LIST[@]} for Debug
+CH_LIST=(`curl -s http://radiko.jp/v2/api/program/today\?area_id=${ARIA} | xmlstarlet sel -t -m /radiko/stations/station -v "@id" -n`)
+
+### ## echo ${CH_LIST[@]} for Debug
+### show_usage() {
+	### echo "Usage: $COMMAND [-o output_path] [-t recording_seconds] station_ID" 1>&2
+### }
+
+### # オプション解析
+### COMMAND=`basename $0`
+### while getopts o:t: OPTION
+### do
+   ### case $OPTION in
+     ### o ) OPTION_o="TRUE" ; VALUE_o="$OPTARG" ;;
+     ### ### t ) OPTION_t="TRUE" ; VALUE_t="$OPTARG" ;;
+     ### * ) show_usage ; exit 1 ;;
+	### esac
+### done
+
+### shift $(($OPTIND - 1)) #残りの非オプションな引数のみが、$@に設定される
+
+### if [ $# = 0 ]; then
+  ### show_usage ; exit 1
+### fi
+
+
+## playerurl=http://radiko.jp/player/swf/player_2.0.1.00.swf
+playerurl=http://radiko.jp/player/swf/player_3.0.0.01.swf
+playerfile=./player.swf
+keyfile=./authkey.png
+
+MPLAYER=/usr/bin/mplayer
+
 
 if [ $# -eq 1 ]; then
   channel=$1
@@ -74,6 +98,10 @@ elif [ $# -eq 2 ]; then
   output=$2
 else
   echo "usage : $0 channel_name[${CH_LIST[@]}] [outputfile]"
+curl -s http://radiko.jp/v2/api/program/today\?area_id=${ARIA} | xmlstarlet sel -t -m /radiko/stations/station -v "concat(@id,':',name)" -n | while read line; do
+ 	echo $line
+ done
+
   exit 1
 fi
 
